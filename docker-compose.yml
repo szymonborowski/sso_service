@@ -1,0 +1,65 @@
+services:
+  sso-app:
+    container_name: sso-app
+    build: .
+    command: php-fpm
+    expose:
+      - "9000"
+    networks:
+      - internal
+
+  sso-nginx:
+    container_name: sso-nginx
+    image: nginx:1.27
+    depends_on:
+      - sso-app
+    volumes:
+      - ./src/:/var/www/html
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.sso.rule=Host(`${APP_DOMAIN}`)"
+      - "traefik.http.routers.sso.entrypoints=websecure"
+      - "traefik.http.routers.sso.tls=true"
+      - "traefik.http.services.sso.loadbalancer.server.port=80"
+    networks:
+      - internal
+      - web
+
+  sso-db:
+    container_name: sso-db
+    image: mysql:8
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    volumes:
+      - sso_db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - internal
+
+  sso-phpmyadmin:
+    container_name: sso-phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: sso-db
+      PMA_PORT: 3306
+    ports:
+      - "8081:80"
+    depends_on:
+      - sso-db
+    networks:
+      - internal
+      - web    
+
+networks:
+  internal:
+    driver: bridge
+  web:
+    external: true
+
+volumes:
+  sso_db_data:
