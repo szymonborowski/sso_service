@@ -9,6 +9,14 @@ services:
         UID: ${UID}
         GID: ${GID}
     command: php-fpm
+    environment:
+      DB_HOST: sso-db
+      DB_CONNECTION: ${DB_CONNECTION}
+      DB_PORT: ${DB_PORT}
+      DB_DATABASE: ${DB_DATABASE}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
     volumes:
       - ./src:/var/www/html
     depends_on:
@@ -17,8 +25,7 @@ services:
     expose:
       - "9000"
     networks:
-      - internal
-      - web
+      - sso-internal
 
   sso-vite:
     container_name: sso-vite
@@ -30,7 +37,7 @@ services:
     ports:
       - "5173:5173"
     networks:
-      - internal
+      - sso-internal
 
   sso-nginx:
     container_name: sso-nginx
@@ -44,13 +51,17 @@ services:
       - "traefik.http.routers.sso.entrypoints=websecure"
       - "traefik.http.routers.sso.tls=true"
       - "traefik.http.services.sso.loadbalancer.server.port=80"
+    depends_on:
+      - sso-app
     networks:
-      - internal
+      - sso-internal
       - web
 
   sso-db:
     container_name: sso-db
     image: mysql:8
+    ports:
+      - "127.0.0.1:3306:3306"
     environment:
       MYSQL_DATABASE: ${DB_DATABASE}
       MYSQL_USER: ${DB_USERNAME}
@@ -58,27 +69,11 @@ services:
       MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
     volumes:
       - sso_db_data:/var/lib/mysql
-    ports:
-      - "3306:3306"
     networks:
-      - internal
-
-  sso-phpmyadmin:
-    container_name: sso-phpmyadmin
-    image: phpmyadmin/phpmyadmin
-    environment:
-      PMA_HOST: sso-db
-      PMA_PORT: 3306
-    ports:
-      - "8081:80"
-    depends_on:
-      - sso-db
-    networks:
-      - internal
-      - web    
+      - sso-internal
 
 networks:
-  internal:
+  sso-internal:
     driver: bridge
   web:
     external: true

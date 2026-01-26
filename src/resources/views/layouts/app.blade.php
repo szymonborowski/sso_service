@@ -13,6 +13,12 @@
     <!-- Styles / Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    <link rel="icon" type="image/png" href="/favicon_1/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="/favicon_1/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon_1/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicon_1/apple-touch-icon.png" />
+    <link rel="manifest" href="/favicon_1/site.webmanifest" />
+
 </head>
     <body>
         @yield('content')
