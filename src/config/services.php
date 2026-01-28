@@ -35,4 +35,9 @@ return [
         ],
     ],
 
+    'users' => [
+        'url' => env('USERS_SERVICE_URL', 'http://users-app:9000'),
+        'api_key' => env('USERS_SERVICE_API_KEY'),
+    ],
+
 ];
