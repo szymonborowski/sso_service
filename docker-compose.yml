@@ -57,6 +57,7 @@ services:
     networks:
       - sso-internal
       - web
+      - microservices
 
   sso-db:
     container_name: sso-db
