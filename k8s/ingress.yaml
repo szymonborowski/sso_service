@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sso
+  namespace: portfolio
+  labels:
+    app.kubernetes.io/name: sso
+    app.kubernetes.io/part-of: portfolio
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - sso.portfolio.local
+      secretName: sso-tls
+  rules:
+    - host: sso.portfolio.local
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: sso
+                port:
+                  number: 80
