@@ -12,10 +12,10 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - sso.portfolio.local
+        - sso.portfolio.kube
       secretName: sso-tls
   rules:
-    - host: sso.portfolio.local
+    - host: sso.portfolio.kube
       http:
         paths:
           - path: /

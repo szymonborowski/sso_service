@@ -13,8 +13,8 @@ type: Opaque
 stringData:
   MYSQL_DATABASE: "sso"
   MYSQL_USER: "sso"
-  MYSQL_PASSWORD: "CHANGE_ME"
-  MYSQL_ROOT_PASSWORD: "CHANGE_ME"
+  MYSQL_PASSWORD: "kr7WHuXfA7MCkBP1rX6wSYXhGUjy1wXEzNiXGtVVRxw="
+  MYSQL_ROOT_PASSWORD: "kr7WHuXfA7MCkBP1rX6wSYXhGUjy1wXEzNiXGtVVRxw="
 ---
 apiVersion: v1
 kind: Service
