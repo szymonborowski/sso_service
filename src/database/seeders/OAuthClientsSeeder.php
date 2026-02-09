@@ -4,8 +4,6 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Str;
 
 class OAuthClientsSeeder extends Seeder
 {
@@ -18,7 +16,7 @@ class OAuthClientsSeeder extends Seeder
             [
                 'id' => 'frontend-client',
                 'name' => 'Frontend Application',
-                'secret' => Hash::make('frontend-secret-change-in-production'),
+                'secret' => 'frontend-secret-change-in-production',
                 'redirect_uris' => json_encode([
                     'https://portfolio.kube/oauth/callback',
                 ]),
@@ -31,7 +29,7 @@ class OAuthClientsSeeder extends Seeder
             [
                 'id' => 'admin-client',
                 'name' => 'Admin Application',
-                'secret' => Hash::make('admin-secret-change-in-production'),
+                'secret' => 'admin-secret-change-in-production',
                 'redirect_uris' => json_encode([
                     'https://admin.portfolio.kube/oauth/callback',
                 ]),
