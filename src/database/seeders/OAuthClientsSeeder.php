@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class OAuthClientsSeeder extends Seeder
 {
@@ -42,6 +43,9 @@ class OAuthClientsSeeder extends Seeder
         ];
 
         foreach ($clients as $client) {
+            // Hash the secret for Laravel Passport
+            $client['secret'] = Hash::make($client['secret']);
+
             DB::table('oauth_clients')->updateOrInsert(
                 ['id' => $client['id']],
                 array_merge($client, [
