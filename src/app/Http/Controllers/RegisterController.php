@@ -39,7 +39,7 @@ class RegisterController extends Controller
 
         if (!$userData) {
             throw ValidationException::withMessages([
-                'email' => 'Nie udało się utworzyć konta. Email może być już zajęty.',
+                'email' => __('auth.registration_failed'),
             ]);
         }
 
@@ -52,9 +52,9 @@ class RegisterController extends Controller
         $redirectUri = $request->session()->pull('register_redirect_uri');
 
         if ($redirectUri) {
-            return redirect($redirectUri)->with('status', 'Rejestracja zakończona pomyślnie!');
+            return redirect($redirectUri)->with('status', __('auth.registration_success'));
         }
 
-        return redirect()->intended('/')->with('status', 'Rejestracja zakończona pomyślnie!');
+        return redirect()->intended('/')->with('status', __('auth.registration_success'));
     }
 }
