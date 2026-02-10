@@ -16,7 +16,7 @@ data:
   DB_HOST: "sso-mysql"
   DB_PORT: "3306"
   # Users service configuration
-  USERS_SERVICE_URL: "http://users"
+  USERS_API_URL_INTERNAL: "http://users"
   USERS_SERVICE_API_KEY: "internal-api-key-change-in-production"
 ---
 apiVersion: v1

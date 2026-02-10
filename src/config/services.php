@@ -36,7 +36,7 @@ return [
     ],
 
     'users' => [
-        'url' => env('USERS_SERVICE_URL', 'http://users-app:9000'),
+        'url' => env('USERS_API_URL_INTERNAL', 'http://users-nginx'),
         'api_key' => env('USERS_SERVICE_API_KEY'),
     ],
 
