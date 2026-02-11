@@ -32,7 +32,8 @@ class OAuthClientsSeeder extends Seeder
                 'name' => 'Admin Application',
                 'secret' => 'admin-secret-change-in-production',
                 'redirect_uris' => json_encode([
-                    'https://admin.portfolio.kube/oauth/callback',
+                    'https://admin.microservices.local/auth/sso/callback',
+                    'https://admin.portfolio.kube/auth/sso/callback',
                 ]),
                 'grant_types' => json_encode([
                     'authorization_code',

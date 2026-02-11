@@ -52,6 +52,7 @@ class LoginController extends Controller
         $allowedHosts = [
             'frontend.microservices.local',
             'blog.microservices.local',
+            'admin.microservices.local',
         ];
 
         $host = parse_url($uri, PHP_URL_HOST);
