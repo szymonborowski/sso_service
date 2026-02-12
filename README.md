@@ -15,7 +15,7 @@ Frontend / Admin ──▶ SSO (Passport) ──▶ Users API (credential verifi
 
 ## Tech Stack
 
-- **Backend:** PHP 8.2 / Laravel 12
+- **Backend:** PHP 8.5 / Laravel 12
 - **Auth server:** Laravel Passport 13.4 (OAuth 2.0)
 - **Frontend:** Vite 7 (login/register views)
 - **Database:** MySQL 8
