@@ -1,6 +1,5 @@
 services:
   sso-app:
-    container_name: sso-app
     build:
       context: .
       dockerfile: docker/dev/php/Dockerfile
@@ -31,7 +30,6 @@ services:
       - microservices
 
   sso-vite:
-    container_name: sso-vite
     image: node:22-alpine
     working_dir: /app
     volumes:
@@ -43,7 +41,6 @@ services:
       - sso-internal
 
   sso-nginx:
-    container_name: sso-nginx
     image: nginx:1.27
     volumes:
       - ./src:/var/www/html
@@ -69,7 +66,6 @@ services:
       - microservices
 
   sso-db:
-    container_name: sso-db
     image: mysql:8
     ports:
       - "127.0.0.1:3306:3306"
