@@ -8,14 +8,15 @@ metadata:
     app.kubernetes.io/part-of: portfolio
   annotations:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - sso.portfolio.kube
+        - sso.borowski.services
       secretName: sso-tls
   rules:
-    - host: sso.portfolio.kube
+    - host: sso.borowski.services
       http:
         paths:
           - path: /

@@ -20,6 +20,7 @@ class OAuthClientsSeeder extends Seeder
                 'secret' => 'frontend-secret-change-in-production',
                 'redirect_uris' => json_encode([
                     'https://portfolio.kube/oauth/callback',
+                    'https://borowski.services/oauth/callback',
                 ]),
                 'grant_types' => json_encode([
                     'authorization_code',
@@ -34,6 +35,7 @@ class OAuthClientsSeeder extends Seeder
                 'redirect_uris' => json_encode([
                     'https://admin.microservices.local/auth/sso/callback',
                     'https://admin.portfolio.kube/auth/sso/callback',
+                    'https://admin.borowski.services/auth/sso/callback',
                 ]),
                 'grant_types' => json_encode([
                     'authorization_code',
