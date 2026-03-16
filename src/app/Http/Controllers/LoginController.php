@@ -28,6 +28,10 @@ class LoginController extends Controller
 
         $request->session()->regenerate();
 
+        if ($request->boolean('remember')) {
+            $request->session()->put('remember_me', true);
+        }
+
         return redirect()->intended('/');
     }
 
