@@ -1,0 +1,48 @@
+# =============================================================================
+# SSO — jednorazowy seed Job
+# Tworzy klientów OAuth2 (frontend-client, admin-client) w bazie SSO.
+#
+# Uruchomienie (raz, przy pierwszym setupie klastra):
+#   kubectl apply -f sso/k8s/seed-job.yaml -n portfolio
+#   kubectl wait --for=condition=complete job/sso-seed -n portfolio --timeout=120s
+#   kubectl delete -f sso/k8s/seed-job.yaml -n portfolio
+# =============================================================================
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sso-seed
+  namespace: portfolio
+  labels:
+    app.kubernetes.io/name: sso
+    app.kubernetes.io/component: seed
+    app.kubernetes.io/part-of: portfolio
+spec:
+  ttlSecondsAfterFinished: 300
+  backoffLimit: 2
+  template:
+    spec:
+      restartPolicy: Never
+      imagePullSecrets:
+        - name: ghcr-secret
+      containers:
+        - name: seed
+          image: ghcr.io/szymonborowski/portfolio-sso:sha-latest
+          imagePullPolicy: IfNotPresent
+          command:
+            - sh
+            - -c
+            - |
+              echo "Seeding SSO OAuth2 clients..."
+              php artisan db:seed --class=OAuthClientsSeeder --force
+              echo "Done."
+          envFrom:
+            - configMapRef:
+                name: sso-config
+            - secretRef:
+                name: sso-secret
+          resources:
+            limits:
+              memory: 256Mi
+            requests:
+              cpu: 10m
+              memory: 128Mi
