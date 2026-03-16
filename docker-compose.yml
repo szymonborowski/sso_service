@@ -35,6 +35,11 @@ services:
       - sso-internal
       - microservices
     logging: *default-logging
+    deploy:
+      resources:
+        limits:
+          memory: 512m
+          cpus: '0.50'
 
   sso-vite:
     image: node:22-alpine
@@ -47,6 +52,11 @@ services:
     networks:
       - sso-internal
     logging: *default-logging
+    deploy:
+      resources:
+        limits:
+          memory: 512m
+          cpus: '0.50'
 
   sso-nginx:
     image: nginx:1.27
@@ -73,6 +83,11 @@ services:
       - web
       - microservices
     logging: *default-logging
+    deploy:
+      resources:
+        limits:
+          memory: 64m
+          cpus: '0.25'
 
   sso-db:
     image: mysql:8
@@ -94,6 +109,11 @@ services:
     networks:
       - sso-internal
     logging: *default-logging
+    deploy:
+      resources:
+        limits:
+          memory: 512m
+          cpus: '0.50'
 
 networks:
   sso-internal:
