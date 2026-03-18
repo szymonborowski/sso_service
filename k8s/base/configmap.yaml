@@ -18,6 +18,8 @@ data:
   # Users service configuration
   USERS_API_URL_INTERNAL: "http://users"
   USERS_SERVICE_API_KEY: "internal-api-key-change-in-production"
+  # Allowed post-logout redirect hosts (comma-separated)
+  ALLOWED_REDIRECT_HOSTS: "https://borowski.services,https://admin.borowski.services"
 ---
 apiVersion: v1
 kind: ConfigMap

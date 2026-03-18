@@ -53,11 +53,16 @@ class LoginController extends Controller
 
     private function isAllowedRedirectUri(string $uri): bool
     {
-        $allowedHosts = [
+        $configured = array_filter(array_map(
+            fn($u) => parse_url(trim($u), PHP_URL_HOST),
+            explode(',', env('ALLOWED_REDIRECT_HOSTS', ''))
+        ));
+
+        $allowedHosts = array_merge([
             'frontend.microservices.local',
             'blog.microservices.local',
             'admin.microservices.local',
-        ];
+        ], array_values($configured));
 
         $host = parse_url($uri, PHP_URL_HOST);
 
