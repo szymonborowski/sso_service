@@ -10,6 +10,16 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
 
+    {{-- Anti-flash: set dark class before paint --}}
+    <script>
+        (function(){
+            var t = localStorage.getItem('theme');
+            if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches) || (t === 'auto' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+            }
+        })();
+    </script>
+
     <!-- Styles / Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -19,8 +29,15 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon_1/apple-touch-icon.png" />
     <link rel="manifest" href="/favicon_1/site.webmanifest" />
 
+    <style>[x-cloak] { display: none !important; }</style>
 </head>
-    <body>
+<body class="bg-gray-50 dark:bg-gray-950 min-h-screen text-gray-900 dark:text-gray-100 transition-colors duration-200">
+    <div class="fixed top-4 right-4 z-50">
+        <x-theme-toggle />
+    </div>
+
+    <main>
         @yield('content')
-    </body>
+    </main>
+</body>
 </html>
