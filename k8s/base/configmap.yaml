@@ -17,7 +17,7 @@ data:
   DB_PORT: "3306"
   # Users service configuration
   USERS_API_URL_INTERNAL: "http://users"
-  USERS_SERVICE_API_KEY: "internal-api-key-change-in-production"
+  USERS_SERVICE_API_KEY: "ce96caad66109fcae01b5206b5ad155af8b46207f258e27ea0c4c30814da86b7"
   # Allowed post-logout redirect hosts (comma-separated)
   ALLOWED_REDIRECT_HOSTS: "https://borowski.services,https://admin.borowski.services"
 ---
