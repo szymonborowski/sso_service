@@ -24,6 +24,7 @@ services:
       DB_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
     volumes:
       - ./src:/var/www/html
+      - sso_vendor:/var/www/html/vendor
     depends_on:
       sso-db:
         condition: service_healthy
@@ -125,3 +126,4 @@ networks:
 
 volumes:
   sso_db_data:
+  sso_vendor:
