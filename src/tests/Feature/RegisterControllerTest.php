@@ -59,7 +59,7 @@ class RegisterControllerTest extends TestCase
         ]);
 
         $response = $this->post('/register', [
-            'name' => 'New User',
+            'name' => 'NewUser',
             'email' => 'new@example.com',
             'password' => 'Password123!',
             'password_confirmation' => 'Password123!',
@@ -78,7 +78,7 @@ class RegisterControllerTest extends TestCase
         ]);
 
         $response = $this->post('/register', [
-            'name' => 'New User',
+            'name' => 'NewUser',
             'email' => 'existing@example.com',
             'password' => 'Password123!',
             'password_confirmation' => 'Password123!',
