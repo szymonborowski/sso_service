@@ -19,6 +19,7 @@ class OAuthClientsSeeder extends Seeder
                 'name' => 'Frontend Application',
                 'secret' => 'frontend-secret-change-in-production',
                 'redirect_uris' => json_encode([
+                    'https://frontend.microservices.local/oauth/callback',
                     'https://portfolio.kube/oauth/callback',
                     'https://borowski.services/oauth/callback',
                 ]),
