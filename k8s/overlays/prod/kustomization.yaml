@@ -3,3 +3,7 @@ kind: Kustomization
 
 resources:
   - ../../base
+
+images:
+  - name: ghcr.io/szymonborowski/portfolio-sso
+    newTag: v0.4.16
