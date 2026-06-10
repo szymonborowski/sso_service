@@ -8,14 +8,18 @@
         <div>
             <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-gray-100">Autoryzacja</h2>
             <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-400">
-                <strong>{{ $client->name }}</strong> prosi o dostep do Twojego konta.
+                <strong>{{ $client->name }}</strong> prosi o dostęp do Twojego konta.
             </p>
         </div>
 
         <div class="bg-white dark:bg-gray-900 p-6 rounded-lg shadow dark:shadow-gray-900/50 dark:ring-1 dark:ring-gray-800">
+            <div class="mb-4 rounded-md bg-sky-50 dark:bg-sky-900/20 border border-sky-100 dark:border-sky-900/40 p-3 text-sm text-gray-600 dark:text-gray-300">
+                Logujesz się przez bezpieczne, wspólne konto (SSO) Szymona Borowskiego — to samo konto działa we wszystkich jego aplikacjach. Po zatwierdzeniu aplikacja pozna jedynie podstawowe dane Twojego konta (np. imię i adres e-mail). <strong>Twoje hasło nigdy nie jest jej przekazywane</strong>, a zgodę możesz w każdej chwili cofnąć.
+            </div>
+
             @if (count($scopes) > 0)
                 <div class="mb-4">
-                    <p class="text-sm text-gray-700 dark:text-gray-300 mb-2">Aplikacja uzyska dostep do:</p>
+                    <p class="text-sm text-gray-700 dark:text-gray-300 mb-2">Aplikacja uzyska dostęp do:</p>
                     <ul class="list-disc list-inside text-sm text-gray-600 dark:text-gray-400">
                         @foreach ($scopes as $scope)
                             <li>{{ $scope->description }}</li>
@@ -31,7 +35,7 @@
                     <input type="hidden" name="client_id" value="{{ $client->getKey() }}">
                     <input type="hidden" name="auth_token" value="{{ $authToken }}">
                     <button type="submit" class="w-full py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-sky-800 hover:bg-sky-700 dark:bg-sky-700 dark:hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-700 dark:focus:ring-offset-gray-900">
-                        Zezwol
+                        Zezwól
                     </button>
                 </form>
 
@@ -42,7 +46,7 @@
                     <input type="hidden" name="client_id" value="{{ $client->getKey() }}">
                     <input type="hidden" name="auth_token" value="{{ $authToken }}">
                     <button type="submit" class="w-full py-2 px-4 border border-gray-300 dark:border-gray-600 text-sm font-medium rounded-md text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-700 dark:focus:ring-offset-gray-900">
-                        Odmow
+                        Odmów
                     </button>
                 </form>
             </div>

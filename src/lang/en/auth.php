@@ -20,6 +20,9 @@ return [
     'username' => 'Username',
     'confirm_password' => 'Confirm password',
     'sign_up' => 'Sign up',
+    'show_password' => 'Show password',
+    'hide_password' => 'Hide password',
+    'passwords_no_match' => 'Passwords do not match.',
 
     // Messages
     'registration_failed' => 'Could not create account. Email may already be taken.',

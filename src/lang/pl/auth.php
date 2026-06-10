@@ -20,6 +20,9 @@ return [
     'username' => 'Nazwa użytkownika',
     'confirm_password' => 'Powtórz hasło',
     'sign_up' => 'Zarejestruj się',
+    'show_password' => 'Pokaż hasło',
+    'hide_password' => 'Ukryj hasło',
+    'passwords_no_match' => 'Hasła nie są identyczne.',
 
     // Messages
     'registration_failed' => 'Nie udało się utworzyć konta. Email może być już zajęty.',
